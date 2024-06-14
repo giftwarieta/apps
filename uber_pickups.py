@@ -2,6 +2,11 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
+st.set_page_config(
+    page_title="Uber pickups in NYC :: Developed by Warieta Gift Ejovwoke",
+    page_icon="👋",
+)
+
 st.title('Uber pickups in NYC')
 
 DATE_COLUMN = 'date/time'
