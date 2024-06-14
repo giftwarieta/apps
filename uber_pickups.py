@@ -24,4 +24,4 @@ data_load_state.text('Loading data...done!')
 
 @st.cache_data
 def load_data(nrows):
-data_load_state.text("Done! (using st.cache_data)")
+         data_load_state.text("Done! (using st.cache_data)")
