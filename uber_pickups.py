@@ -13,6 +13,8 @@ DATE_COLUMN = 'date/time'
 DATA_URL = ('https://s3-us-west-2.amazonaws.com/'
             'streamlit-demo-data/uber-raw-data-sep14.csv.gz')
 
+st.sidebar.success("Welcome!")
+st.sidebar("Web app developed by Warieta Gift Ejovwoke")
 @st.cache_data
 def load_data(nrows):
     data = pd.read_csv(DATA_URL, nrows=nrows)
@@ -32,8 +34,6 @@ if st.checkbox('Show raw data'):
 st.subheader('Number of pickups by hour')
 hist_values = np.histogram(data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
 st.bar_chart(hist_values)
-
-st.sidebar.success("Select a demo above.")
 
 # Some number in the range 0-23
 # adding filter slider
