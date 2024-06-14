@@ -14,7 +14,8 @@ DATA_URL = ('https://s3-us-west-2.amazonaws.com/'
             'streamlit-demo-data/uber-raw-data-sep14.csv.gz')
 
 st.sidebar.success("Welcome!")
-st.sidebar("Web app developed by Warieta Gift Ejovwoke")
+st.sidebar.title("Web app developed by Warieta Gift Ejovwoke")
+
 @st.cache_data
 def load_data(nrows):
     data = pd.read_csv(DATA_URL, nrows=nrows)
