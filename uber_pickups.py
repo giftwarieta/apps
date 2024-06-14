@@ -4,10 +4,10 @@ import numpy as np
 
 st.set_page_config(
     page_title="Uber pickups in NYC :: Developed by Warieta Gift Ejovwoke",
-    page_icon="👋",
+    page_icon="🚘",
 )
 
-st.title('Uber pickups in NYC')
+st.title('Uber pickups in NYC 🚘')
 
 DATE_COLUMN = 'date/time'
 DATA_URL = ('https://s3-us-west-2.amazonaws.com/'
