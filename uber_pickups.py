@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
+st.logo("https://raw.githubusercontent.com/giftwarieta/Python/main/assets/GiftWarieta_Logo.png", link="https://raw.githubusercontent.com/giftwarieta/Python/main/assets/GiftWarieta_Logo.png", icon_image=LOGO_URL_SMALL)
+
 st.set_page_config(
     page_title="Uber pickups in NYC :: Developed by Warieta Gift Ejovwoke",
     page_icon="🚘",
