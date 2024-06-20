@@ -17,7 +17,9 @@ DATA_URL = ('https://s3-us-west-2.amazonaws.com/'
             'streamlit-demo-data/uber-raw-data-sep14.csv.gz')
 
 st.sidebar.success("Welcome!")
-st.sidebar.title("Web app developed by Warieta Gift Ejovwoke")
+st.sidebar.warning("Testing app")
+st.sidebar.information("This is a practice app")
+st.sidebar.error("Error not found!")
 
 @st.cache_data
 def load_data(nrows):
@@ -51,13 +53,22 @@ st.map(filtered_data)
 
 st.metric(label="Temperature", value="70 °F", delta="1.2 °F")
 
-a = 5
-b = 8
-c = a-b
-col1, col2, col3, col4 = st.columns(4)
-col1.metric("Temperature", "70 °F", "1.2 °F")
-col2.metric("Wind", "9 mph", "-8%")
-col3.metric("Humidity", "86%", "4%")
-col4.metric("Revenue", "N35.2b", f"{c}%")
+
 
 pricing_data, other_data, news = st.tabs(["Pricing Data", "Other Data", "Top 10 News"])
+
+with pricing_data:
+    st.header("My data")
+    st.write(data)
+with other_data:
+    a = 5
+    b = 8
+    c = a-b
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("Temperature", "70 °F", "1.2 °F")
+    col2.metric("Wind", "9 mph", "-8%")
+    col3.metric("Humidity", "86%", "4%")
+    col4.metric("Revenue", "N35.2b", f"{c}%")
+with news:
+    st.markdown("This website is developed and maintained by Warieta Gift Ejovwoke"
+    
