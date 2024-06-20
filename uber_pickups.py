@@ -18,7 +18,7 @@ DATA_URL = ('https://s3-us-west-2.amazonaws.com/'
 
 st.sidebar.success("Welcome!")
 st.sidebar.warning("Testing app")
-st.sidebar.information("This is a practice app")
+#st.sidebar.information("This is a practice app")
 st.sidebar.error("Error not found!")
 
 @st.cache_data
