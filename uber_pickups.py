@@ -52,8 +52,8 @@ st.map(filtered_data)
 st.metric(label="Temperature", value="70 °F", delta="1.2 °F")
 
 a = 5
-b = 3
-c = 5-3
+b = 8
+c = a-b
 col1, col2, col3, col4 = st.columns(4)
 col1.metric("Temperature", "70 °F", "1.2 °F")
 col2.metric("Wind", "9 mph", "-8%")
