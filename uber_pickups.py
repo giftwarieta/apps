@@ -59,3 +59,5 @@ col1.metric("Temperature", "70 °F", "1.2 °F")
 col2.metric("Wind", "9 mph", "-8%")
 col3.metric("Humidity", "86%", "4%")
 col4.metric("Revenue", "N35.2b", f"{c}%")
+
+pricing_data, other_data, news = st.tabs("Pricing Data", "Other Data", "Top 10 News")
