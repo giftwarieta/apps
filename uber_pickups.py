@@ -70,5 +70,5 @@ with other_data:
     col3.metric("Humidity", "86%", "4%")
     col4.metric("Revenue", "N35.2b", f"{c}%")
 with news:
-    st.markdown("This website is developed and maintained by Warieta Gift Ejovwoke"
+    st.markdown("This website is developed and maintained by Warieta Gift Ejovwoke")
     
