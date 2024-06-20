@@ -34,11 +34,11 @@ data_load_state.text("Done! (using st.cache_data)")
 if st.checkbox('Show raw data'):
     st.subheader('Raw data')
     st.write(data)
-for seconds in range(200):
+
 st.subheader('Number of pickups by hour')
 hist_values = np.histogram(data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
 st.bar_chart(hist_values)
-
+for seconds in range(200):
 # Some number in the range 0-23
 # adding filter slider
 hour_to_filter = st.slider('hour', 0, 23, 17)
