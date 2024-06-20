@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import time
 
 #st.logo('https://raw.githubusercontent.com/giftwarieta/Python/main/assets/GiftWarieta_Logo.png', link="https://raw.githubusercontent.com/giftwarieta/Python/main/assets/GiftWarieta_Logo.png", icon_image=LOGO_URL_SMALL)
 
@@ -33,7 +34,7 @@ data_load_state.text("Done! (using st.cache_data)")
 if st.checkbox('Show raw data'):
     st.subheader('Raw data')
     st.write(data)
-
+for seconds in range(200):
 st.subheader('Number of pickups by hour')
 hist_values = np.histogram(data[DATE_COLUMN].dt.hour, bins=24, range=(0,24))[0]
 st.bar_chart(hist_values)
@@ -58,3 +59,4 @@ col1.metric("Temperature", "70 °F", "1.2 °F")
 col2.metric("Wind", "9 mph", "-8%")
 col3.metric("Humidity", "86%", "4%")
 col4.metric("Revenue", "N35.2b", f"{c}%")
+time.sleep(1)
