@@ -64,7 +64,7 @@ world = load_data()
 
 unique_country = world['country'].unique()
 st.write(unique_country)
-selected_country = st.selectbox('Select a Country', ['Nigeria','Ghana'])
+selected_country = st.selectbox('Select a Country', unique_country)
 #selected_country = st.selectbox('Select a Country', ['Nigeria','Ghana'])
 selected_data = world[world['country'] == selected_country]
 
