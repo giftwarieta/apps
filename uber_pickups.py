@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import time
+import streamlit.components.v1 as stc 
 #import plotly.express as ex
 
 #st.logo('https://raw.githubusercontent.com/giftwarieta/Python/main/assets/GiftWarieta_Logo.png', link="https://raw.githubusercontent.com/giftwarieta/Python/main/assets/GiftWarieta_Logo.png", icon_image=LOGO_URL_SMALL)
@@ -66,7 +67,7 @@ unique_country = sorted(world['country'].unique())
 st.write(unique_country)
 selected_country = st.selectbox('Select a Country', unique_country)
 #selected_country = st.selectbox('Select a Country', ['Nigeria','Ghana'])
-selected_data = world[world['country'] == selected_country]
+selected_data = world[world['country'] == selected_country].sort_values("country")
 
 st.subheader('Data for ' + selected_country)
 
@@ -74,6 +75,20 @@ st.dataframe(selected_data)
 #st.map(selected_country)
 
 ## Practice Scripts
+
+RESULT_TEMP = """
+<div style="width:90%;height:100%;margin:1px;padding:5px;position:relative;border-radius:5px;border-bottom-right-radius: 60px;
+box-shadow:0 0 15px 5px #ccc; background-color: #a8f0c6;
+  border-left: 5px solid #6c6c6c;">
+<h4>{}</h4>
+<p style="color:blue;"><span style="color:black;">📈Score::</span>{}</p>
+<p style="color:blue;"><span style="color:black;">🔗</span><a href="{}",target="_blank">Link</a></p>
+<p style="color:blue;"><span style="color:black;">💲Price:</span>{}</p>
+<p style="color:blue;"><span style="color:black;">🧑‍🎓👨🏽‍🎓 Students:</span>{}</p>
+
+</div>
+"""
+stc.html(RESULT_TEMP,height=350)
 
 st.metric(label="Temperature", value="70 °F", delta="1.2 °F")
 
