@@ -61,10 +61,14 @@ def load_data():
    return pd.read_csv("data/worldcities.csv")
 
 world = load_data()
-selected_country = world[world['country'] == 'Nigeria']
 
-st.dataframe(selected_country)
-st.map(selected_country)
+unique_country = sorted(world['country'].unique())
+selected_country = st.multiselect('Country', unique_country,unique_country)
+selected_data = world[world['country'] == selected_country]
+
+st.dataframe(selected_data)
+#st.map(selected_country)
+
 ## Practice Scripts
 
 st.metric(label="Temperature", value="70 °F", delta="1.2 °F")
