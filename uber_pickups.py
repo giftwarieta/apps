@@ -62,7 +62,7 @@ def load_data():
 
 world = load_data()
 
-unique_country = sorted(world['country'].unique())
+unique_country = world['country'].unique()
 selected_country = st.selectbox('Select a Country', unique_country,unique_country)
 selected_data = world[world['country'] == selected_country]
 
