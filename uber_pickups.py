@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import time
 import streamlit.components.v1 as stc 
-#import plotly.express as ex
+import plotly.express as ex
 
 #st.logo('https://raw.githubusercontent.com/giftwarieta/Python/main/assets/GiftWarieta_Logo.png', link="https://raw.githubusercontent.com/giftwarieta/Python/main/assets/GiftWarieta_Logo.png", icon_image=LOGO_URL_SMALL)
 
