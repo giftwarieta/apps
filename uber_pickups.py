@@ -53,11 +53,11 @@ filtered_data = data[data[DATE_COLUMN].dt.hour == hour_to_filter]
 st.subheader('Map of all pickups at %s:00' % hour_to_filter)
 st.map(filtered_data)
 
-def load_data(mydata):
-    return pd.read_csv(mydata)
+#def load_data(mydata):
+ #   return pd.read_csv(mydata)
 
-#world = load_data("../data/worldcities.csv")
-#st.write(world)
+world = pd.read_csv("../data/worldcities.csv")
+st.write(world)
 
 ## Practice Scripts
 
