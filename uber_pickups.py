@@ -54,11 +54,16 @@ filtered_data = data[data[DATE_COLUMN].dt.hour == hour_to_filter]
 st.subheader('Map of all pickups at %s:00' % hour_to_filter)
 st.map(filtered_data)
 
+#Population Map Configuration
+st.subheader('Map of all pickups at %s:00' % hour_to_filter)
+
 def load_data():
    return pd.read_csv("data/worldcities.csv")
 
 world = load_data()
-st.dataframe(world)
+selected_country = world[world['country]=='Nigeria']
+
+st.dataframe(selected_country)
 
 ## Practice Scripts
 
