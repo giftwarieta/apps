@@ -61,7 +61,7 @@ def load_data():
    return pd.read_csv("data/worldcities.csv")
 
 world = load_data()
-selected_country = world[world['country]=='Nigeria']
+selected_country = world[world['count'].country == 'Nigeria']
 
 st.dataframe(selected_country)
 
