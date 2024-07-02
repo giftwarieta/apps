@@ -63,12 +63,13 @@ def load_data():
 world = load_data()
 
 unique_country = world['country'].unique()
-selected_country = st.selectbox('Select a Country', unique_country,unique_country)
-selected_data = world[world['country'] == selected_country]
+st.write(unique_country)
+#selected_country = st.selectbox('Select a Country', unique_country,unique_country)
+#selected_data = world[world['country'] == selected_country]
 
-st.subheader('Data for ' + selected_country)
+#st.subheader('Data for ' + selected_country)
 
-st.dataframe(selected_data)
+#st.dataframe(selected_data)
 #st.map(selected_country)
 
 ## Practice Scripts
