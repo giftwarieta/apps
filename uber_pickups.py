@@ -62,9 +62,10 @@ def load_data():
 
 world = load_data()
 
-unique_country = sorted(world['country'].unique())
+unique_country = world['country'].unique()
 st.write(unique_country)
 selected_country = st.selectbox('Select a Country', ['Nigeria','Ghana'])
+#selected_country = st.selectbox('Select a Country', ['Nigeria','Ghana'])
 selected_data = world[world['country'] == selected_country]
 
 st.subheader('Data for ' + selected_country)
