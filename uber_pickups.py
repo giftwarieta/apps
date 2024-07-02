@@ -55,10 +55,10 @@ st.subheader('Map of all pickups at %s:00' % hour_to_filter)
 st.map(filtered_data)
 
 def load_data(mydata):
-   return pd.read_csv(mydata)
+   return pd.read_csv("../data/worldcities.csv")
 
-world = load_data("../data/worldcities.csv")
-st.write(world)
+world = load_data(mydata)
+st.dataframe(world)
 
 ## Practice Scripts
 
