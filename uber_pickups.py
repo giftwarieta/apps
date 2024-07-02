@@ -64,7 +64,7 @@ world = load_data()
 selected_country = world[world['country'] == 'Nigeria']
 
 st.dataframe(selected_country)
-
+st.map(selected_country)
 ## Practice Scripts
 
 st.metric(label="Temperature", value="70 °F", delta="1.2 °F")
