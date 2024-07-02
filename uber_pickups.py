@@ -56,7 +56,7 @@ st.map(filtered_data)
 def load_data(mydata):
     return pd.read_csv(mydata)
 
-world = load_data("/data/worldcities.csv")
+world = load_data("../data/worldcities.csv")
 st.write(world)
 
 ## Practice Scripts
