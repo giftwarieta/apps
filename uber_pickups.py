@@ -1,5 +1,4 @@
-pip install -r requirements.txt
-
+#pip install -r requirements.txt
 
 import plotly.express as px
 import streamlit as st
