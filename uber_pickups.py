@@ -75,7 +75,7 @@ st.subheader('Data for ' + selected_country)
 st.dataframe(selected_data)
 #st.map(selected_country)
 
-fig = px.scatter_mapbox(selected_data, lat = "lat", lon = "lng", hover_name = "city", hover_data = ["country", "population"], color_discrete_sequence = ["magenta"], zoom =10, height = 700)
+fig = px.scatter_mapbox(selected_data, lat = "lat", lon = "lng", hover_name = "city", hover_data = ["country", "population"], color_discrete_sequence = ["magenta"], zoom =6, height = 700)
 
 fig.update_layout(mapbox_style = "open-street-map")
 st.plotly_chart(fig)
