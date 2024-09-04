@@ -17,7 +17,7 @@ users = {
 }
 
 # Streamlit Authenticator
-authenticator = stauth.Authenticate(users, 'app_home', 'abcdef', cookie_expiry_days=1)
+authenticator = stauth.Authenticate(users, 'app', 'abcdef', cookie_expiry_days=1)
 
 # Handle user login
 name, authentication_status, username = authenticator.login('Login', 'main')
