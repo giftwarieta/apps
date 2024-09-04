@@ -3,6 +3,9 @@ import pandas as pd
 import pyotp
 import hashlib
 import openpyxl
+import matplotlib.pyplot as plt
+import seaborn as sns
+from io import BytesIO
 # Function to hash the password
 def hash_password(password):
     return hashlib.sha256(str.encode(password)).hexdigest()
