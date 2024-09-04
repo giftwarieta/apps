@@ -96,6 +96,63 @@ if st.session_state['logged_in'] and st.session_state['otp_verified']:
         forecast_expense = total_expense * 1.05  # Assume 5% increase next month
         st.write(f"Expected Expense Next Month: ${forecast_expense}")
 
+        # Ensure correct columns exist
+        required_columns = {'Date', 'Category', 'Payment Method', 'Amount', 'Type'}
+        if not required_columns.issubset(df.columns):
+            st.error("Uploaded file must contain the columns: Date, Category, Payment Method, Amount, Type")
+        else:
+            st.write("### Data Preview")
+            st.dataframe(df.head())
+            
+            # Convert Date column to datetime
+            df['Date'] = pd.to_datetime(df['Date'])
+            
+            # Summary Cards
+            st.write("### Summary")
+            total_income = df[df['Type'] == 'Income']['Amount'].sum()
+            total_expense = df[df['Type'] == 'Expense']['Amount'].sum()
+            net_balance = total_income - total_expense
+            
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("Total Income", f"${total_income:,.2f}")
+            with col2:
+                st.metric("Total Expense", f"${total_expense:,.2f}")
+            with col3:
+                st.metric("Net Balance", f"${net_balance:,.2f}")
+            
+            # Donut Chart: Income vs Expense
+            st.write("### Donut Chart: Income vs Expense")
+            fig, ax = plt.subplots()
+            sizes = [total_income, total_expense]
+            labels = ['Income', 'Expense']
+            ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140, wedgeprops=dict(width=0.4))
+            st.pyplot(fig)
+            
+            # Bar Chart: Total Amount by Category
+            st.write("### Bar Chart: Total Amount by Category")
+            category_totals = df.groupby('Category')['Amount'].sum().reset_index()
+            fig, ax = plt.subplots()
+            sns.barplot(data=category_totals, x='Category', y='Amount', ax=ax)
+            ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')
+            st.pyplot(fig)
+            
+            # Line Chart: Income vs Expense Trend
+            st.write("### Line Chart: Income vs Expense Trend")
+            trend_data = df.groupby(['Date', 'Type'])['Amount'].sum().reset_index()
+            fig, ax = plt.subplots()
+            sns.lineplot(data=trend_data, x='Date', y='Amount', hue='Type', ax=ax)
+            st.pyplot(fig)
+            
+            # Donut Chart: Payment Method Distribution
+            st.write("### Donut Chart: Payment Method Distribution")
+            payment_method_totals = df.groupby('Payment Method')['Amount'].sum().reset_index()
+            fig, ax = plt.subplots()
+            sizes = payment_method_totals['Amount']
+            labels = payment_method_totals['Payment Method']
+            ax.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140, wedgeprops=dict(width=0.4))
+            st.pyplot(fig)
+
 # Logout option
 if st.sidebar.button('Logout'):
     st.session_state['logged_in'] = False
