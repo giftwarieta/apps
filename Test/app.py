@@ -108,21 +108,14 @@ if st.session_state['logged_in'] and st.session_state['otp_verified']:
                 selected_date_range = st.sidebar.date_input('Select Date Range', [min_date, max_date])
 
                 # Convert selected_date_range to datetime.date objects
-                if isinstance(selected_date_range[0], datetime):
-                    start_date = selected_date_range[0].date()
-                else:
-                    start_date = selected_date_range[0]
-
-                if isinstance(selected_date_range[1], datetime):
-                    end_date = selected_date_range[1].date()
-                else:
-                    end_date = selected_date_range[1]
+                start_date, end_date = selected_date_range
 
                 # Apply filters
                 filtered_df = df[
                     (df['Category'].isin(selected_categories)) &
                     (df['Payment Method'].isin(selected_payment_methods)) &
-                    (df['Date'].between(start_date, end_date))
+                    (df['Date'] >= pd.Timestamp(start_date)) &
+                    (df['Date'] <= pd.Timestamp(end_date))
                 ]
                 
                 # Summary Cards
