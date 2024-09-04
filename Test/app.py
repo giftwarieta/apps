@@ -17,11 +17,13 @@ users = {
     'user2@example.com': {'name': 'User Two', 'password': hash_password('password456')}
 }
 
-# Set session states for login and OTP
+# Set session states for login, OTP, and username
 if 'logged_in' not in st.session_state:
     st.session_state['logged_in'] = False
 if 'otp_verified' not in st.session_state:
     st.session_state['otp_verified'] = False
+if 'username' not in st.session_state:
+    st.session_state['username'] = None
 
 # Login form
 if not st.session_state['logged_in']:
@@ -33,6 +35,7 @@ if not st.session_state['logged_in']:
     if st.button('Login'):
         if username in users and users[username]['password'] == hash_password(password):
             st.session_state['logged_in'] = True
+            st.session_state['username'] = username  # Store username in session state
             st.success(f"Welcome {users[username]['name']}!")
         else:
             st.error("Invalid username or password")
@@ -41,13 +44,13 @@ if not st.session_state['logged_in']:
 if st.session_state['logged_in'] and not st.session_state['otp_verified']:
     st.title("OTP Verification")
 
-    # Use a unique base32 secret for each user (here it's a static secret for simplicity)
+    # Use a unique base32 secret for each user (static secret for simplicity)
     secret = pyotp.random_base32()  # You can store this in the user data in production
     totp = pyotp.TOTP(secret)
 
     # Send OTP to the user
     otp = totp.now()
-    send_otp(username, otp)  # Simulate sending OTP
+    send_otp(st.session_state['username'], otp)  # Use the stored username
 
     user_otp = st.text_input('Enter the OTP', type='password')
 
@@ -61,7 +64,7 @@ if st.session_state['logged_in'] and not st.session_state['otp_verified']:
 
 # Main app functionality
 if st.session_state['logged_in'] and st.session_state['otp_verified']:
-    st.sidebar.title(f"Welcome, {users[username]['name']}")
+    st.sidebar.title(f"Welcome, {users[st.session_state['username']]['name']}")
 
     # File upload
     uploaded_file = st.sidebar.file_uploader("Upload your income and expense file", type="xlsx")
@@ -92,4 +95,5 @@ if st.session_state['logged_in'] and st.session_state['otp_verified']:
 if st.sidebar.button('Logout'):
     st.session_state['logged_in'] = False
     st.session_state['otp_verified'] = False
+    st.session_state['username'] = None
     st.success("Logged out successfully!")
