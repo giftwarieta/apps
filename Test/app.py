@@ -6,6 +6,7 @@ import openpyxl
 import matplotlib.pyplot as plt
 import seaborn as sns
 from io import BytesIO
+
 # Function to hash the password
 def hash_password(password):
     return hashlib.sha256(str.encode(password)).hexdigest()
@@ -76,26 +77,7 @@ if st.session_state['logged_in'] and st.session_state['otp_verified']:
 
     if uploaded_file:
         df = pd.read_excel(uploaded_file)
-        st.write("### Data Preview")
-        st.dataframe(df.head())
-
-        # Analyze the data
-        st.write("### Analysis")
-        total_income = df[df['Type'] == 'Income']['Amount'].sum()
-        total_expense = df[df['Type'] == 'Expense']['Amount'].sum()
-
-        st.write(f"Total Income: ${total_income}")
-        st.write(f"Total Expense: ${total_expense}")
-
-        # Visualization: Income vs. Expense
-        st.write("### Visualization")
-        st.bar_chart(df.groupby('Type')['Amount'].sum())
-
-        # Simple forecasting
-        st.write("### Forecasting")
-        forecast_expense = total_expense * 1.05  # Assume 5% increase next month
-        st.write(f"Expected Expense Next Month: ${forecast_expense}")
-
+        
         # Ensure correct columns exist
         required_columns = {'Date', 'Category', 'Payment Method', 'Amount', 'Type'}
         if not required_columns.issubset(df.columns):
@@ -107,10 +89,30 @@ if st.session_state['logged_in'] and st.session_state['otp_verified']:
             # Convert Date column to datetime
             df['Date'] = pd.to_datetime(df['Date'])
             
+            # Filters
+            st.sidebar.header("Filters")
+
+            categories = df['Category'].unique().tolist()
+            selected_categories = st.sidebar.multiselect('Select Categories', categories, default=categories)
+
+            payment_methods = df['Payment Method'].unique().tolist()
+            selected_payment_methods = st.sidebar.multiselect('Select Payment Methods', payment_methods, default=payment_methods)
+
+            min_date = df['Date'].min()
+            max_date = df['Date'].max()
+            selected_date_range = st.sidebar.date_input('Select Date Range', [min_date, max_date])
+
+            # Apply filters
+            filtered_df = df[
+                (df['Category'].isin(selected_categories)) &
+                (df['Payment Method'].isin(selected_payment_methods)) &
+                (df['Date'].between(selected_date_range[0], selected_date_range[1]))
+            ]
+            
             # Summary Cards
             st.write("### Summary")
-            total_income = df[df['Type'] == 'Income']['Amount'].sum()
-            total_expense = df[df['Type'] == 'Expense']['Amount'].sum()
+            total_income = filtered_df[filtered_df['Type'] == 'Income']['Amount'].sum()
+            total_expense = filtered_df[filtered_df['Type'] == 'Expense']['Amount'].sum()
             net_balance = total_income - total_expense
             
             col1, col2, col3 = st.columns(3)
@@ -131,7 +133,7 @@ if st.session_state['logged_in'] and st.session_state['otp_verified']:
             
             # Bar Chart: Total Amount by Category
             st.write("### Bar Chart: Total Amount by Category")
-            category_totals = df.groupby('Category')['Amount'].sum().reset_index()
+            category_totals = filtered_df.groupby('Category')['Amount'].sum().reset_index()
             fig, ax = plt.subplots()
             sns.barplot(data=category_totals, x='Category', y='Amount', ax=ax)
             ax.set_xticklabels(ax.get_xticklabels(), rotation=45, ha='right')
@@ -139,14 +141,14 @@ if st.session_state['logged_in'] and st.session_state['otp_verified']:
             
             # Line Chart: Income vs Expense Trend
             st.write("### Line Chart: Income vs Expense Trend")
-            trend_data = df.groupby(['Date', 'Type'])['Amount'].sum().reset_index()
+            trend_data = filtered_df.groupby(['Date', 'Type'])['Amount'].sum().reset_index()
             fig, ax = plt.subplots()
             sns.lineplot(data=trend_data, x='Date', y='Amount', hue='Type', ax=ax)
             st.pyplot(fig)
             
             # Donut Chart: Payment Method Distribution
             st.write("### Donut Chart: Payment Method Distribution")
-            payment_method_totals = df.groupby('Payment Method')['Amount'].sum().reset_index()
+            payment_method_totals = filtered_df.groupby('Payment Method')['Amount'].sum().reset_index()
             fig, ax = plt.subplots()
             sizes = payment_method_totals['Amount']
             labels = payment_method_totals['Payment Method']
@@ -160,3 +162,4 @@ if st.sidebar.button('Logout'):
     st.session_state['username'] = None
     st.session_state['otp'] = None  # Clear OTP
     st.success("Logged out successfully!")
+
