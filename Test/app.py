@@ -9,7 +9,7 @@ def hash_password(password):
 
 # Function to send OTP via email (implement using your email service)
 def send_otp(email, otp):
-    st.info(f"OTP {otp} has been sent to {email} (Simulated)")  # Replace with email-sending code
+    st.info(f"OTP {otp} has been sent to {email} (Simulated)")  # Replace with actual email-sending code
 
 # Dummy user data (replace with your own user credentials)
 users = {
@@ -24,6 +24,8 @@ if 'otp_verified' not in st.session_state:
     st.session_state['otp_verified'] = False
 if 'username' not in st.session_state:
     st.session_state['username'] = None
+if 'otp' not in st.session_state:
+    st.session_state['otp'] = None
 
 # Login form
 if not st.session_state['logged_in']:
@@ -44,19 +46,19 @@ if not st.session_state['logged_in']:
 if st.session_state['logged_in'] and not st.session_state['otp_verified']:
     st.title("OTP Verification")
 
-    # Use a unique base32 secret for each user (static secret for simplicity)
-    secret = pyotp.random_base32()  # You can store this in the user data in production
-    totp = pyotp.TOTP(secret)
-
-    # Send OTP to the user
-    otp = totp.now()
-    send_otp(st.session_state['username'], otp)  # Use the stored username
+    # Generate OTP once and store in session state if not already generated
+    if st.session_state['otp'] is None:
+        secret = pyotp.random_base32()  # In production, use a fixed secret for each user
+        totp = pyotp.TOTP(secret)
+        otp = totp.now()
+        st.session_state['otp'] = otp  # Store the OTP in session state
+        send_otp(st.session_state['username'], otp)  # Simulate sending OTP
 
     user_otp = st.text_input('Enter the OTP', type='password')
 
     if st.button('Verify OTP'):
-        # Verify the OTP using TOTP.verify() with a valid time window (default is 30 seconds)
-        if totp.verify(user_otp):
+        # Verify the OTP against the stored OTP
+        if user_otp == st.session_state['otp']:
             st.session_state['otp_verified'] = True
             st.success('OTP Verified')
         else:
@@ -96,4 +98,5 @@ if st.sidebar.button('Logout'):
     st.session_state['logged_in'] = False
     st.session_state['otp_verified'] = False
     st.session_state['username'] = None
+    st.session_state['otp'] = None  # Clear OTP
     st.success("Logged out successfully!")
