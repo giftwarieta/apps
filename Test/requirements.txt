@@ -7,4 +7,3 @@ pyotp
 geocoder
 openpyxl
 seaborn
-io
