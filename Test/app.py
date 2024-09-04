@@ -12,3 +12,6 @@ def send_otp(email, otp):
     pass
 
 # Set up user authentication
+users = {'user@example.com': {'name': 'User Name', 'password': 'hashed_password'}}
+authenticator = stauth.Authenticate(users, 'app', 'auth', cookie_expiry_days=1)
+
