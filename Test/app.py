@@ -44,4 +44,54 @@ if not st.session_state['logged_in']:
 
 # OTP Verification
 if st.session_state['logged_in'] and not st.session_state['otp_verified']:
-    st.title("
+    st.title("OTP Verification")
+
+    secret = 'base32secret3232'  # Use your own base32 secret
+    totp = pyotp.TOTP(secret)
+    otp = totp.now()
+
+    send_otp(username, otp)  # Simulate sending OTP
+
+    user_otp = st.text_input('Enter the OTP', type='password')
+
+    if st.button('Verify OTP'):
+        if verify_otp(secret, user_otp):
+            st.session_state['otp_verified'] = True
+            st.success('OTP Verified')
+        else:
+            st.error('Invalid OTP')
+
+# Main app functionality
+if st.session_state['logged_in'] and st.session_state['otp_verified']:
+    st.sidebar.title(f"Welcome, {users[username]['name']}")
+
+    # File upload
+    uploaded_file = st.sidebar.file_uploader("Upload your income and expense file", type="xlsx")
+
+    if uploaded_file:
+        df = pd.read_excel(uploaded_file)
+        st.write("### Data Preview")
+        st.dataframe(df.head())
+
+        # Analyze the data
+        st.write("### Analysis")
+        total_income = df[df['Type'] == 'Income']['Amount'].sum()
+        total_expense = df[df['Type'] == 'Expense']['Amount'].sum()
+
+        st.write(f"Total Income: ${total_income}")
+        st.write(f"Total Expense: ${total_expense}")
+
+        # Visualization: Income vs. Expense
+        st.write("### Visualization")
+        st.bar_chart(df.groupby('Type')['Amount'].sum())
+
+        # Simple forecasting
+        st.write("### Forecasting")
+        forecast_expense = total_expense * 1.05  # Assume 5% increase next month
+        st.write(f"Expected Expense Next Month: ${forecast_expense}")
+
+# Logout option
+if st.sidebar.button('Logout'):
+    st.session_state['logged_in'] = False
+    st.session_state['otp_verified'] = False
+    st.success("Logged out successfully!")
