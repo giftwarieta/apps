@@ -15,7 +15,8 @@ def verify_otp(secret, user_otp):
 # Dummy user data (replace with your own user credentials)
 users = {
     'user1@example.com': {'name': 'User One', 'password': hash_password('password123')},
-    'user2@example.com': {'name': 'User Two', 'password': hash_password('password456')}
+    'user2@example.com': {'name': 'User Two', 'password': hash_password('password456')},
+    'gwarieta@gmail.com': {'name': 'User Two', 'password': hash_password('password457')}
 }
 
 # Function to send OTP via email (implement using your email service)
