@@ -7,21 +7,15 @@ import hashlib
 def hash_password(password):
     return hashlib.sha256(str.encode(password)).hexdigest()
 
-# Function to verify the OTP
-def verify_otp(secret, user_otp):
-    totp = pyotp.TOTP(secret)
-    return totp.verify(user_otp)
+# Function to send OTP via email (implement using your email service)
+def send_otp(email, otp):
+    st.info(f"OTP {otp} has been sent to {email} (Simulated)")  # Replace with email-sending code
 
 # Dummy user data (replace with your own user credentials)
 users = {
     'user1@example.com': {'name': 'User One', 'password': hash_password('password123')},
-    'user2@example.com': {'name': 'User Two', 'password': hash_password('password456')},
-    'gwarieta@gmail.com': {'name': 'User Two', 'password': hash_password('password457')}
+    'user2@example.com': {'name': 'User Two', 'password': hash_password('password456')}
 }
-
-# Function to send OTP via email (implement using your email service)
-def send_otp(email, otp):
-    st.info(f"OTP {otp} has been sent to {email} (Simulated)")
 
 # Set session states for login and OTP
 if 'logged_in' not in st.session_state:
@@ -47,20 +41,23 @@ if not st.session_state['logged_in']:
 if st.session_state['logged_in'] and not st.session_state['otp_verified']:
     st.title("OTP Verification")
 
-    secret = 'base32secret3232'  # Use your own base32 secret
+    # Use a unique base32 secret for each user (here it's a static secret for simplicity)
+    secret = pyotp.random_base32()  # You can store this in the user data in production
     totp = pyotp.TOTP(secret)
-    otp = totp.now()
 
+    # Send OTP to the user
+    otp = totp.now()
     send_otp(username, otp)  # Simulate sending OTP
 
     user_otp = st.text_input('Enter the OTP', type='password')
 
     if st.button('Verify OTP'):
-        if verify_otp(secret, user_otp):
+        # Verify the OTP using TOTP.verify() with a valid time window (default is 30 seconds)
+        if totp.verify(user_otp):
             st.session_state['otp_verified'] = True
             st.success('OTP Verified')
         else:
-            st.error('Invalid OTP')
+            st.error('Invalid OTP. Please try again.')
 
 # Main app functionality
 if st.session_state['logged_in'] and st.session_state['otp_verified']:
