@@ -8,7 +8,7 @@ geocoder
 openpyxl
 seaborn
 datetime
-mysql.connector 
+mysql-connector-python
 os
 pathlib
 dotenv
