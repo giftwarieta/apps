@@ -11,10 +11,6 @@ from datetime import datetime, date
 
 #######################################################
 
-import mysql.connector
-import os
-from pathlib import Path
-from dotenv import load_dotenv
 
 # configuring time
 from datetime import datetime
