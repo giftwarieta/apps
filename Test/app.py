@@ -15,8 +15,6 @@ from datetime import datetime, date
 ################################################
 
 
-
-
 # Function to hash the password
 def hash_password(password):
     return hashlib.sha256(str.encode(password)).hexdigest()
