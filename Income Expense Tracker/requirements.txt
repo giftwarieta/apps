@@ -1,1 +1,10 @@
-
+streamlit
+pandas
+matplotlib
+plotly
+streamlit-authenticator
+pyotp
+geocoder
+openpyxl
+seaborn
+datetime
