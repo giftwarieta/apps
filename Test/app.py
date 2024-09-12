@@ -17,12 +17,6 @@ from datetime import datetime
 from datetime import date
 from datetime import timedelta
 
-today = date.today()
-thisday = today.strftime('%A, %B %d %Y')
-
-print('This script ran today, ' + thisday)
-
-
 
 
 ################################################
