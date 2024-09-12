@@ -11,8 +11,30 @@ from datetime import datetime, date
 
 #######################################################
 
+import mysql.connector
+
+# configuring time
+from datetime import datetime
+from datetime import date
+from datetime import timedelta
+
+today = date.today()
+thisday = today.strftime('%A, %B %d %Y')
+
+st.write('This script ran today, ' + thisday)
+
+
+
+
+st.title('I am doing great')
+
+#df = pd.DataFrame(data, columns=cursor.column_names)
+
+#st.write(df)
 
 ################################################
+
+
 
 
 # Function to hash the password
