@@ -9,7 +9,7 @@ import pandas as pd
 import mysql.connector
 import os
 from pathlib import Path
-from dotenv import load_dotenv
+from dotenv import load_dotenv, dotenv_values 
 
 # configuring time
 from datetime import datetime
