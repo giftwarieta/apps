@@ -1,7 +1,14 @@
-streamlit
-pandas
-mysql.connector
 os
 pathlib
 dotenv
+streamlit
+pandas
+matplotlib
+plotly
+streamlit-authenticator
+pyotp
+geocoder
+openpyxl
+seaborn
 datetime
+mysql-connector-python
