@@ -20,6 +20,6 @@ thisday = today.strftime('%A, %B %d %Y')
 
 st.write('This script ran today, ' + thisday)
 
-host = secrets.HOST
+host = 'gewideas.com.ng'
 
 st.write(host)
