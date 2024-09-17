@@ -6,7 +6,7 @@ Created on Wed Sep 11 14:22:27 2024
 
 import streamlit as st
 import pandas as pd
-import mysql.connector
+#import mysql.connector
 import os
 from pathlib import Path
 from dotenv import load_dotenv
