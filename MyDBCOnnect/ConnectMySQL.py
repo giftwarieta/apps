@@ -20,4 +20,6 @@ thisday = today.strftime('%A, %B %d %Y')
 
 st.write('This script ran today, ' + thisday)
 
-st.write(${{secrets.HOST}})
+me = ${{secrets.HOST}}
+
+st.write(me)
