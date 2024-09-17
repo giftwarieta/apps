@@ -9,7 +9,6 @@ import pandas as pd
 import mysql.connector
 import os
 from pathlib import Path
-from dotenv import load_dotenv, dotenv_values 
 
 # configuring time
 from datetime import datetime
@@ -20,3 +19,5 @@ today = date.today()
 thisday = today.strftime('%A, %B %d %Y')
 
 st.write('This script ran today, ' + thisday)
+
+st.write(${{secrets.HOST}})
