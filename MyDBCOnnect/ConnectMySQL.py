@@ -20,6 +20,6 @@ thisday = today.strftime('%A, %B %d %Y')
 
 st.write('This script ran today, ' + thisday)
 
-me = {{secrets.HOST}}
+host = os.environ['host']
 
-st.write(me)
+st.write(host)
