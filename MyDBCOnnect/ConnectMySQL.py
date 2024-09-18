@@ -84,7 +84,7 @@ if title == 'Yes':
 else:
     st.markdown(
     """
-    mastercard
+    st.write(mastercard)
     """
     , unsafe_allow_html=True)
 
