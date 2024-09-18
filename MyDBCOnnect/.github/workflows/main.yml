@@ -30,7 +30,7 @@ jobs:
     - name: Run Python Script with Secret
       # Here we define the environment variable from the GitHub secret
       env:
-        HOST: ${{ secrets.HOST }}
+        APP_PASSWORD: ${{ secrets.APP_PASSWORD }}
       run: |
         echo "Running Python script with a secret"
         python ConnectMySQL.py
