@@ -30,10 +30,10 @@ APP_PASSWORD = os.environ["app_password"]
 
 
 # Use the secret (password)
-if APP_PASSWORD:
-    st.write(f"The secret password is: {APP_PASSWORD}")
-else:
-    st.write("No password found")
+#if APP_PASSWORD:
+ #   st.write(f"The secret password is: {APP_PASSWORD}")
+#else:
+ #   st.write("No password found")
 
 #host = 'gewideas.com.ng'
 
