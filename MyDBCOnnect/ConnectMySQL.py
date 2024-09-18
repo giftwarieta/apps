@@ -45,7 +45,7 @@ st.data_editor(
     hide_index=True,
 )
 
-title = st.text_input("Movie title", "Life of Brian")
+title = st.text_input("Movie title", "")
 st.write("The current movie title is", title)
 
 if title == 'Yes':
