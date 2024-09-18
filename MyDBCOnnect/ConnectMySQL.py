@@ -37,9 +37,9 @@ else:
 
 # Access the secret from the environment variable
 password = os.getenv('APP_PASSWORD')
-#APP_PASSWORD = os.getenv["app_password"]
+APP_PASSWORD = os.getenv['app_password']
 
-st.write(password)
+st.write(APP_PASSWORD)
 # Use the secret (password)
 #if APP_PASSWORD:
  #   st.write(f"The secret password is: {APP_PASSWORD}")
