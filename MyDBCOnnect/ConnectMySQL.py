@@ -70,8 +70,8 @@ def render_svg_example():
 
 title = st.text_input("Movie title", "")
 
-card_width = "200"
-card_height = "100"
+card_width = "20"
+card_height = "10"
 
 def mastercard_image():
     mastercard = st.markdown(
