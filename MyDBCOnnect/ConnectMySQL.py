@@ -36,10 +36,19 @@ else:
     st.write("Host environment variable not found")
 
 # Access the secret from the environment variable
-password = os.getenv('APP_PASSWORD')
-APP_PASSWORD = os.getenv('app_password')
+APP_PASSWORD = os.getenv('APP_PASSWORD')
 
-st.write(APP_PASSWORD)
+# Display the secret (if found)
+if APP_PASSWORD:
+    st.write(f"The secret password is: {APP_PASSWORD}")
+else:
+    st.write("No password found")
+
+# Access the secret from the environment variable
+#password = os.getenv('APP_PASSWORD')
+#APP_PASSWORD = os.getenv('app_password')
+
+#st.write(APP_PASSWORD)
 # Use the secret (password)
 #if APP_PASSWORD:
  #   st.write(f"The secret password is: {APP_PASSWORD}")
