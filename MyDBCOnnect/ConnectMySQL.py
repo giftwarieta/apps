@@ -26,7 +26,7 @@ st.write('This script ran today, ' + thisday)
 
 # Access the secret from the environment variable
 #password = os.getenv("APP_PASSWORD")
-APP_PASSWORD = os.environ["app_password"]
+APP_PASSWORD = os.getenv["app_password"]
 
 
 # Use the secret (password)
