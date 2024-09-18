@@ -25,7 +25,9 @@ thisday = today.strftime('%A, %B %d %Y')
 st.write('This script ran today, ' + thisday)
 
 # Access the secret from the environment variable
-password = os.getenv("APP_PASSWORD")
+#password = os.getenv("APP_PASSWORD")
+password = os.environ["APP_PASSWORD"]
+
 
 # Use the secret (password)
 if password:
