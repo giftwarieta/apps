@@ -24,14 +24,16 @@ thisday = today.strftime('%A, %B %d %Y')
 
 st.write('This script ran today, ' + thisday)
 
-env_path = Path.cwd() / '.evn'
+current_dir = Path(__file__).resolve().parent if "__file__" in globals() else Path.cwd()
+env_path = current_dir / ".env"
+load_dotenv(dotenv_path=env_path)
 
-current_dir = Path(_file_).resolve().parent if "_file_" in locals() else Path.cwd()
-envars = current_dir / ".env"
-load_dotenv(envars)
-load_dotenv(dotenv_path = env_path)
-
-print(os.getenv['host'])
+# Example of accessing an environment variable (change 'host' to your variable name)
+host = os.getenv('host')
+if host:
+    st.write(f"Host: {host}")
+else:
+    st.write("Host environment variable not found")
 
 # Access the secret from the environment variable
 #password = os.getenv("APP_PASSWORD")
