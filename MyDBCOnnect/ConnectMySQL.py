@@ -9,6 +9,8 @@ import pandas as pd
 import mysql.connector
 import os
 from pathlib import Path
+import base64
+import textwrap
 
 # configuring time
 from datetime import datetime
