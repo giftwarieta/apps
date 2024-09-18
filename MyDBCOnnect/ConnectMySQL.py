@@ -29,7 +29,7 @@ env_path = current_dir / ".env"
 load_dotenv(dotenv_path=env_path)
 
 # Example of accessing an environment variable (change 'host' to your variable name)
-host = os.getenv('APP_PASSWORD')
+host = os.getenv('HOST')
 if host:
     st.write(f"Host: {host}")
 else:
