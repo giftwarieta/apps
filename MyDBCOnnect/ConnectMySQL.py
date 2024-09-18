@@ -11,6 +11,7 @@ import os
 from pathlib import Path
 import base64
 import textwrap
+from dotenv import load_dotenv
 
 # configuring time
 from datetime import datetime
