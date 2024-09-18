@@ -28,9 +28,9 @@ password = os.getenv("HOST")
 
 # Use the secret (password)
 if password:
-    print(f"The secret password is: {password}")
+    st.write(f"The secret password is: {password}")
 else:
-    print("No password found")
+    st.write("No password found")
 
 #host = 'gewideas.com.ng'
 
