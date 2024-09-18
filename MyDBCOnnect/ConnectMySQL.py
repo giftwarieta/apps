@@ -48,12 +48,11 @@ st.data_editor(
 title = st.text_input("Movie title", "Life of Brian")
 st.write("The current movie title is", title)
 
-if title == 'Yes':
+if title = 'Yes':
     st.markdown(
     """
     <svg height="100" width="100">
       <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
     </svg>"""
     , unsafe_allow_html=True)
-    else
-    st.write('Bad')
+    
