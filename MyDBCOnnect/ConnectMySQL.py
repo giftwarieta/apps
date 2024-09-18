@@ -23,9 +23,18 @@ thisday = today.strftime('%A, %B %d %Y')
 
 st.write('This script ran today, ' + thisday)
 
-host = 'gewideas.com.ng'
+# Access the secret from the environment variable
+password = os.getenv("HOST")
 
-st.write(host)
+# Use the secret (password)
+if password:
+    print(f"The secret password is: {password}")
+else:
+    print("No password found")
+
+#host = 'gewideas.com.ng'
+
+#st.write(host)
 
 data_df = pd.DataFrame(
     {
