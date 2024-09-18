@@ -111,9 +111,9 @@ def verve_image():
 
 
 if title == 'Yes':
-    mastercard_image()
+    discovercard_image()
 else:
-    verve_image()
+    americanexpress_image()
 
 
 st.write("The current movie title is", title)
