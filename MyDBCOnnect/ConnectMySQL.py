@@ -26,12 +26,12 @@ st.write('This script ran today, ' + thisday)
 
 # Access the secret from the environment variable
 #password = os.getenv("APP_PASSWORD")
-mypassword = os.environ["password"]
+APP_PASSWORD = os.environ["app_password"]
 
 
 # Use the secret (password)
-if password:
-    st.write(f"The secret password is: {mypassword}")
+if APP_PASSWORD:
+    st.write(f"The secret password is: {APP_PASSWORD}")
 else:
     st.write("No password found")
 
