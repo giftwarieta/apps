@@ -31,7 +31,7 @@ envars = current_dir / ".env"
 load_dotenv(envars)
 load_dotenv(dotenv_path = env_path)
 
-st.write(os.environ['host'])
+print(os.environ['host'])
 
 # Access the secret from the environment variable
 #password = os.getenv("APP_PASSWORD")
