@@ -37,7 +37,7 @@ else:
 
 # Access the secret from the environment variable
 #APP_PASSWORD = os.getenv('APP_PASSWORD')
-APP_PASSWORD = os.environ["app_password"]
+APP_PASSWORD = os.getenv('app_password')
 
 auth_header = base64.b64encode(f"{APP_PASSWORD}".encode("ascii"))
 
