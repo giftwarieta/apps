@@ -39,11 +39,15 @@ else:
 #APP_PASSWORD = os.getenv('APP_PASSWORD')
 APP_PASSWORD = os.environ["app_password"]
 
+auth_header = base64.b64encode(f"{APP_PASSWORD}".encode("ascii"))
+
 # Display the secret (if found)
 if APP_PASSWORD:
     st.write(f"The secret password is: {APP_PASSWORD}")
 else:
     st.write("No password found")
+
+st.write(auth_header)
 
 # Access the secret from the environment variable
 #password = os.getenv('APP_PASSWORD')
